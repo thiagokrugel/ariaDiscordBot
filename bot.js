@@ -57,16 +57,21 @@ else {
         console.log(`Logged in as ${client.user.tag}`)
     })
     client.on("interactionCreate", (interaction) => {
-        async function handleCommand() {
-            if (!interaction.isCommand()) return
+        try{
+            async function handleCommand() {
+                if (!interaction.isCommand()) return
 
-            const slashcmd = client.slashcommands.get(interaction.commandName)
-            if (!slashcmd) interaction.reply("Not a valid slash command")
+                const slashcmd = client.slashcommands.get(interaction.commandName)
+                if (!slashcmd) await interaction.reply("Something went wrong :(");
 
-            await interaction.deferReply()
-            await slashcmd.run({ client, interaction })
+                await interaction.deferReply()
+                await slashcmd.run({ client, interaction })
+            }
+            handleCommand()
         }
-        handleCommand()
+        catch (err){
+            interaction.reply("Something went wrong :(");
+        }
     })
     client.login(token)
 }
