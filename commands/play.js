@@ -78,7 +78,8 @@ module.exports = {
             const song = result.tracks[0]
             await queue.addTrack(song)
             embed
-                .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!`)
+                .setColor('#c7fabe')
+                .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!\n Requested by: ${interaction.user}`)
                 .setThumbnail(song.thumbnail)
                 .setFooter({ text: `Duration: ${song.duration}`})
 		}
