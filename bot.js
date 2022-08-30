@@ -7,7 +7,7 @@ const { ActivityType } = require('discord.js');
 const fs = require('node:fs');
 const path = require('node:path');
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const client = new Client({ intents: [GatewayIntentBits.Guilds, GatewayIntentBits.GuildVoiceStates] });
 
 client.commands = new Collection();
 
@@ -27,8 +27,6 @@ for (const file of commandFiles) {
 	const command = require(filePath);
 	client.commands.set(command.data.name, command);
 }
-
-const prefix = ">"
 
 const rest = new REST({ version: '10' }).setToken(token);
 
