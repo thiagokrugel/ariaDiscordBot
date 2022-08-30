@@ -4,7 +4,7 @@ module.exports = {
 	data: new SlashCommandBuilder()
 		.setName('uml')
 		.setDescription('soninho'),
-	async execute(interaction) {
+	run: async (interaction) => {
 		await interaction.reply('😴😴😴');
 	},
 };
