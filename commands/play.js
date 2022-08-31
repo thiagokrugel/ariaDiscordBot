@@ -46,7 +46,8 @@ module.exports = {
             const song = result.tracks[0]
             await queue.addTrack(song)
             embed
-                .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!`)
+                .setColor('#c7fabe')
+                .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!\n\n Requested by: ${interaction.user}`)
                 .setThumbnail(song.thumbnail)
                 .setFooter({ text: `Duration: ${song.duration}`})
 
@@ -63,7 +64,8 @@ module.exports = {
             const playlist = result.playlist
             await queue.addTracks(result.tracks)
             embed
-                .setDescription(`Aria added **${result.tracks.length} songs from [${playlist.title}](${playlist.url})** to the queue!`)
+                .setColor('#c7fabe')
+                .setDescription(`Aria added **${result.tracks.length} songs from [${playlist.title}](${playlist.url})** to the queue!\n\n Requested by: ${interaction.user}`)
                 
 		} else if (interaction.options.getSubcommand() === "search") {
             let url = interaction.options.getString("searchterms")
@@ -79,7 +81,7 @@ module.exports = {
             await queue.addTrack(song)
             embed
                 .setColor('#c7fabe')
-                .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!\n Requested by: ${interaction.user}`)
+                .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!\n\n Requested by: ${interaction.user}`)
                 .setThumbnail(song.thumbnail)
                 .setFooter({ text: `Duration: ${song.duration}`})
 		}

@@ -57,7 +57,7 @@ else {
         console.log(`Logged in as ${client.user.tag}`)
     })
     client.on("interactionCreate", (interaction) => {
-        try{
+        try {
             async function handleCommand() {
                 if (!interaction.isCommand()) return
 
@@ -69,8 +69,10 @@ else {
             }
             handleCommand()
         }
-        catch (err){
-            interaction.reply("Something went wrong :(");
+        catch {
+            console.log(err)
+            interaction.deferReply("Something went wrong :(");
+            process.exit(1)
         }
     })
     client.login(token)
