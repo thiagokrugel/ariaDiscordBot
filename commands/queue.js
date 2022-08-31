@@ -5,7 +5,7 @@ module.exports = {
     data: new SlashCommandBuilder()
         .setName("queue")
         .setDescription("Shows current video queue!")
-        .addStringOption((option) => option.setName("page").setDescription("Page number").setMinValue(1)),
+        .addStringOption((option) => option.setName("page").setDescription("Page number")),
 
         run: async ({client, interaction}) => {
             const queue = client.player.getQueue(interaction.guildId)
@@ -29,7 +29,7 @@ module.exports = {
                 embeds:
                     new EmbedBuilder()
                         .setColor('#c7fabe')
-                        .setName('Current queue!')
+                        .setTitle('Current queue!')
                         .setDescription(`Now playing: \n` + 
                         (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} -- <@${song.requestedBy.id}>` : "None") + 
                         `\n\n**Queue**\n${queueString}`
