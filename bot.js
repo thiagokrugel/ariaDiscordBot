@@ -11,7 +11,7 @@ const path = require('node:path');
 const LOAD_SLASH = process.argv[2] == "load"
 
 const CLIENT_ID = "1004715283619008582"
-const GUILD_ID = "836925573968298024"
+const GUILD_ID = "844593988475682836"
 
 const client = new Discord.Client({
     intents: [

@@ -38,7 +38,7 @@ module.exports = {
             let url = interaction.options.getString("url")
             const result = await client.player.search(url, {
                 requestedBy: interaction.user,
-                searchEngine: QueryType.YOUTUBE_VIDEO
+                searchEngine: QueryType.SOUNDCLOUD_TRACK
             })
             if (result.tracks.length === 0)
                 return interaction.editReply("Aria didn't found anything...")
@@ -71,7 +71,7 @@ module.exports = {
             let url = interaction.options.getString("searchterms")
             const result = await client.player.search(url, {
                 requestedBy: interaction.user,
-                searchEngine: QueryType.AUTO
+                searchEngine: QueryType.SOUNDCLOUD_SEARCH
             })
 
             if (result.tracks.length === 0)
