@@ -31,7 +31,7 @@ module.exports = {
                         .setColor('#c7fabe')
                         .setTitle('Current queue!')
                         .setDescription(`Now playing: \n` + 
-                        (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} -- <@${song.requestedBy.id}>` : "None") + 
+                        (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} -- <@${currentSong.requestedBy.id}>` : "None") + 
                         `\n\n**Queue**\n${queueString}`
                         )
                         .setFooter({
