@@ -62,7 +62,7 @@ else {
                 if (!interaction.isCommand()) return
 
                 const slashcmd = client.slashcommands.get(interaction.commandName)
-                if (!slashcmd) await interaction.reply("Something went wrong :(");
+                if (!slashcmd) await interaction.deferReply("Something went wrong :(");
 
                 await interaction.deferReply()
                 await slashcmd.run({ client, interaction })
@@ -71,7 +71,7 @@ else {
         }
         catch {
             console.log(err)
-            interaction.deferReply("Something went wrong :(");
+            interaction.reply("Something went wrong :(");
             process.exit(1)
         }
     })
