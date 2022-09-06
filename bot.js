@@ -75,5 +75,5 @@ else {
             process.exit(1)
         }
     })
-    client.login(token)
+    client.login(token) // define token in config.json
 }
