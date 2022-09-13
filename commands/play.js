@@ -55,7 +55,7 @@ module.exports = {
             let url = interaction.options.getString("url")
             const result = await client.player.search(url, {
                 requestedBy: interaction.user,
-                searchEngine: QueryType.YOUTUBE_PLAYLIST
+                searchEngine: QueryType.SOUNDCLOUD_PLAYLIST
             })
 
             if (result.tracks.length === 0)
@@ -65,7 +65,7 @@ module.exports = {
             await queue.addTracks(result.tracks)
             embed
                 .setColor('#c7fabe')
-                .setDescription(`Aria added **${result.tracks.length} songs from [${playlist.title}](${playlist.url})** to the queue!\n\n Requested by: <@${song.requestedBy.id}>`)
+                .setDescription(`Aria added **${result.tracks.length} songs from [${playlist.title}](${playlist.url})** to the queue!\n\n Requested by: <@${result.tracks[0].requestedBy.id}>`)
                 
 		} else if (interaction.options.getSubcommand() === "search") {
             let url = interaction.options.getString("searchterms")
