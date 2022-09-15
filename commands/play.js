@@ -49,13 +49,13 @@ module.exports = {
                 .setColor('#c7fabe')
                 .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!\n\n Requested by: <@${song.requestedBy.id}>`)
                 .setThumbnail(song.thumbnail)
-                .setFooter({ text: `Duration: ${song.duration}`})
+                .setFooter({ text: `Duration: ${song.duration} | Aria appreciates your support!`})
 
 		} else if (interaction.options.getSubcommand() === "playlist") {
             let url = interaction.options.getString("url")
             const result = await client.player.search(url, {
                 requestedBy: interaction.user,
-                searchEngine: QueryType.SOUNDCLOUD_PLAYLIST
+                searchEngine: QueryType.YOUTUBE_PLAYLIST
             })
 
             if (result.tracks.length === 0)
@@ -66,6 +66,7 @@ module.exports = {
             embed
                 .setColor('#c7fabe')
                 .setDescription(`Aria added **${result.tracks.length} songs from [${playlist.title}](${playlist.url})** to the queue!\n\n Requested by: <@${result.tracks[0].requestedBy.id}>`)
+                .setFooter({ text: `Aria appreciates your support!`})
                 
 		} else if (interaction.options.getSubcommand() === "search") {
             let url = interaction.options.getString("searchterms")
@@ -83,7 +84,7 @@ module.exports = {
                 .setColor('#c7fabe')
                 .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!\n\n Requested by: <@${song.requestedBy.id}>`)
                 .setThumbnail(song.thumbnail)
-                .setFooter({ text: `Duration: ${song.duration}`})
+                .setFooter({ text: `Duration: ${song.duration} | Aria appreciates your support!`})
 		}
         if (!queue.playing) await queue.play()
         await interaction.editReply({
