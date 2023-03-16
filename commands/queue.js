@@ -10,7 +10,7 @@ module.exports = {
     run: async ({client, interaction}) => {
         const queue = client.player.getQueue(interaction.guildId)
         if(!queue || !queue.playing){
-            return await interaction.editReply("Aria didn't found anything! Is the queue empty?")
+            return await interaction.editReply("Aria didn't find anything! Is the queue empty?")
         }
 
         const pagesTotal = Math.ceil(queue.tracks.length/10) || 1
