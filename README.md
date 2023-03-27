@@ -2,6 +2,7 @@
 
 <img align="right" src= "https://static.wikia.nocookie.net/aikatsustars6864/images/f/f0/AS82122.png/revision/latest?cb=20171116175054"  width="500" height="302"/>
 <br>
+<p></p>
 <br>
 <img align="right" src="https://static.wikia.nocookie.net/aikatsustars6864/images/d/d4/Screen_Shot_2017-12-07_at_7.56.03_PM.png/revision/latest?cb=20180104134031" width="500" height="302" />
 
