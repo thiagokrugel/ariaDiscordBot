@@ -16,7 +16,8 @@
 <h2 align="left">Can I invite Aria to my server?</h2>
 <h4 align="left">Absolutely! Just click the button below and you're good to go!</h4>
 <br>
-[![Button Click]] [Link]
+[![Button Click]]
+[Link]
 
 
 <!---------------------------------------------------------------------------->
