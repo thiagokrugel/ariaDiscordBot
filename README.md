@@ -15,10 +15,10 @@
 
 <h2 align="left">Can I invite Aria to my server?</h2>
 <h4 align="left">Absolutely! Just click the button below and you're good to go!</h4>
-[![Button Click]][link]
+[![Button Click]][Link]
 
 
 <!---------------------------------------------------------------------------->
 
 [Button Click]: https://img.shields.io/badge/Click_Me!-37a779?style=for-the-badge
-[Link]: # https://discord.com/api/oauth2/authorize?client_id=1004715283619008582&permissions=8&scope=bot
+[Link]: # 'https://discord.com/api/oauth2/authorize?client_id=1004715283619008582&permissions=8&scope=bot'
