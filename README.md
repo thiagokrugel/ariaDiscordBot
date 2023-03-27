@@ -15,4 +15,4 @@
 
 <h2 align="left">Can I invite Aria to my server?</h2>
 <h4 align="left">Absolutely! Just click the button below and you're good to go!</h4>
-[Invite!](https://discord.com/api/oauth2/authorize?client_id=1004715283619008582&permissions=8&scope=bot)
+[![https://camo.githubusercontent.com/ea8c958860409b8979989624355e77883228ef62589e4dfc5afe493813843908/68747470733a2f2f696d672e736869656c64732e696f2f62616467652f436c69636b5f4d65212d3337613737393f7374796c653d666f722d7468652d6261646765]][https://discord.com/api/oauth2/authorize?client_id=1004715283619008582&permissions=8&scope=bot]
