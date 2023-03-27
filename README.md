@@ -1,6 +1,8 @@
 <h1 align="center">Meet Aria, a multi-purpose Discord.gg bot!</h1>
 
 <img align="right" src= "https://static.wikia.nocookie.net/aikatsustars6864/images/f/f0/AS82122.png/revision/latest?cb=20171116175054"  width="500" height="302"/>
+<br>
+<img align="right" src="https://static.wikia.nocookie.net/aikatsustars6864/images/d/d4/Screen_Shot_2017-12-07_at_7.56.03_PM.png/revision/latest?cb=20180104134031" width="500" height="302" />
 
 <h2 align="left">Who is Aria Futaba?</h2>
 <h4 align="left">Aria Futaba is a fictional character from the animated series Aikatsu Stars! She is the main theme for the bot!</h4>
