@@ -1,5 +1,4 @@
 <h1 align="center">Meet Aria, an all-purpose Discord.gg bot!</h1>
-<p align="center">_________________________________________</p>
 
 <img align="center" src= "https://static.wikia.nocookie.net/aikatsustars6864/images/f/f0/AS82122.png/revision/latest?cb=20171116175054"  width="1000" height="562"/>
 
