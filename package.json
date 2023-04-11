@@ -13,6 +13,6 @@
     "node-fetch": "^2.6.9",
     "play-dl": "^1.9.5",
     "request": "^2.88.2",
-    "ytdl-core": "^4.11.3"
+    "ytdl-core": "^4.9.1"
   }
 }
