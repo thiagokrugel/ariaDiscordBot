@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js")
-const request = require('request');
+const fetch = require('node-fetch');
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -15,26 +15,29 @@ module.exports = {
 
         const pokeName = pokeSearch.toLowerCase()
 
-        const url = 'https://pokeapi.co/api/v2/pokemon/' + pokeName
+        let url = 'https://pokeapi.co/api/v2/pokemon/' + pokeName
 
-        request(url, function (error, response, body) {
-            if (!error && response.statusCode == 200) {
-                var json = JSON.parse(body);
-                console.log(json);
+        console.log(url)
+
+        let settings = { method: "Get" };
+
+        const json = await fetch(url, settings)
+            .then(res => res.json())
+            .then((json) => {
+                console.log(json)
                 return json
-            }
-        })
+        });
 
         const id = json.id
 
         const embeds = new EmbedBuilder()
             .setColor('#c7fabe')
             .setTitle(json.name)
-            .setDescription(`${json.flavor_text} | Type: ${json.types.type.name}`)
+            .setDescription(`${json.flavor_text} | Type: placeholder`)
             .setFooter({
                 text: `National ID: ${id} | Aria appreciates your support!`
             })
-            .setThumbnail(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/${id}.png`)
+            .setThumbnail(`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`)
 
         await interaction.editReply({
             embeds: [embeds]                   
