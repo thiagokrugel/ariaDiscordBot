@@ -55,6 +55,7 @@ if (LOAD_SLASH) {
 else {
     client.on("ready", () => {
         console.log(`Logged in as ${client.user.tag}`)
+        client.user.setPresence({ activities: [{ name: 'so sweet step ♡' }], status: 'online' });
     })
     client.on("interactionCreate", (interaction) => {
         try {

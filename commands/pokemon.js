@@ -30,9 +30,12 @@ module.exports = {
 
         const id = json.id
 
+        const fullName = json.name;
+        const capName = fullName.charAt(0).toUpperCase() + fullName.slice(1);
+
         const embeds = new EmbedBuilder()
             .setColor('#c7fabe')
-            .setTitle(json.name)
+            .setTitle(capName)
             .setDescription(`${json.flavor_text} | Type: placeholder`)
             .setFooter({
                 text: `National ID: ${id} | Aria appreciates your support!`

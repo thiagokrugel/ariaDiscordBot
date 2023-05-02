@@ -1,2 +1,4 @@
 config.json
 ffmpeg.exe
+server.js
+lan-server/
