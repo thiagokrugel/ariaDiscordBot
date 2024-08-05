@@ -1,6 +1,9 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js")
 const { QueryType } = require("discord-player")
+const { useMainPlayer } = require('discord-player');
+const { YouTubeExtractor } = require('@discord-player/extractor');
+
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -27,10 +30,14 @@ module.exports = {
 				)
 		),
 	run: async ({ client, interaction }) => {
+        const player = useMainPlayer();
+        player.extractors.register(YouTubeExtractor);
+        await player.extractors.loadDefault()
+
 		if (!interaction.member.voice.channel) return interaction.editReply("Join a voice channel to use this!")
 
-		const queue = await client.player.createQueue(interaction.guild)
-		if (!queue.connection) await queue.connect(interaction.member.voice.channel)
+		//const queue = await client.player.createQueue(interaction.guild)
+		//if (!queue.connection) await queue.connect(interaction.member.voice.channel)
 
 		let embed = new EmbedBuilder()
 
@@ -44,7 +51,7 @@ module.exports = {
                 return interaction.editReply("Aria didn't found anything...")
             
             const song = result.tracks[0]
-            await queue.addTrack(song)
+            //await queue.addTrack(song)
             embed
                 .setColor('#c7fabe')
                 .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!\n\n Requested by: <@${song.requestedBy.id}>`)
@@ -62,7 +69,7 @@ module.exports = {
                 return interaction.editReply("Aria didn't found anything...")
             
             const playlist = result.playlist
-            await queue.addTracks(result.tracks)
+            //await queue.addTracks(result.tracks)
             embed
                 .setColor('#c7fabe')
                 .setDescription(`Aria added **${result.tracks.length} songs from [${playlist.title}](${playlist.url})** to the queue!\n\n Requested by: <@${result.tracks[0].requestedBy.id}>`)
@@ -70,23 +77,30 @@ module.exports = {
                 
 		} else if (interaction.options.getSubcommand() === "search") {
             let url = interaction.options.getString("searchterms")
-            const result = await client.player.search(url, {
-                requestedBy: interaction.user,
-                searchEngine: QueryType.YOUTUBE_SEARCH
-            })
+            const interactionUser = await interaction.guild.members.fetch(interaction.user.id)
 
-            if (result.tracks.length === 0)
-                return interaction.editReply("Aria didn't found anything...")
+            try {
+            const { track } = await player.play(interaction.member.voice.channel, url, {
+                nodeOptions: { 
+                    metadata: interaction               
+                }
+            });
+            //song.play()
+            // await queue.addTrack(song)
             
-            const song = result.tracks[0]
-            await queue.addTrack(song)
             embed
                 .setColor('#c7fabe')
-                .setDescription(`Aria added **[${song.title}](${song.url})** to the queue!\n\n Requested by: <@${song.requestedBy.id}>`)
-                .setThumbnail(song.thumbnail)
-                .setFooter({ text: `Duration: ${song.duration} | Aria appreciates your support!`})
+                .setDescription(`Aria added **[${track.title}](${track.url})** to the queue!\n\n Requested by: <@${interactionUser.id}>`)
+                .setThumbnail(track.thumbnail)
+                .setFooter({ text: `Duration: ${track.duration} | Aria appreciates your support!`})
+            }
+            catch (e){
+                console.log(e)
+                return interaction.editReply("Aria didn't found anything...")                
+            }
 		}
-        if (!queue.playing) await queue.play()
+        // song.play()
+        // if (!queue.playing) await queue.play()
         await interaction.editReply({
             embeds: [embed]
         })

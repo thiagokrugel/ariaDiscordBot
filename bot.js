@@ -21,12 +21,16 @@ const client = new Discord.Client({
 })
 
 client.slashcommands = new Discord.Collection()
-client.player = new Player(client, {
+const player = new Player(client, {
     ytdlOptions: {
         quality: "highestaudio",
-        highWaterMark: 1 << 25
+        filter: "audioonly",
+        highWaterMark: 1 << 25,
+        dlChunkSize: 0
     }
 })
+
+player.extractors.loadDefault((ext) => ext == 'YouTubeExtractor');
 
 let commands = []
 
