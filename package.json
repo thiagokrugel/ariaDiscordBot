@@ -7,6 +7,7 @@
     "@discordjs/voice": "^0.11.0",
     "@distube/ytdl-core": "^4.11.8",
     "discord-player": "^6.7.0",
+    "discord-player-youtubei": "^1.2.4",
     "discord.js": "^14.3.0",
     "dotenv": "^16.0.2",
     "ffmpeg": "^0.0.4",

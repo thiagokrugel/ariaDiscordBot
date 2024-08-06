@@ -8,10 +8,7 @@ module.exports = {
         .addNumberOption((option) => option.setName("page").setDescription("Page number")),
 
     run: async ({client, interaction}) => {
-        const queue = client.player.getQueue(interaction.guildId)
-        if(!queue || !queue.playing){
-            return await interaction.editReply("Aria didn't find anything! Is the queue empty?")
-        }
+        const queue = track.queue
 
         const pagesTotal = Math.ceil(queue.tracks.length/10) || 1
         const page = (interaction.options.getNumber("page") || 1) - 1

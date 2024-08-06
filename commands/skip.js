@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js")
+const { useMainPlayer } = require('discord-player');
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -7,11 +8,13 @@ module.exports = {
         .setDescription("Skips the current song!"),
 
     run: async ({ client, interaction }) => {
-        const queue = client.player.getQueue(interaction.guildId)
+        const player = useMainPlayer();
 
-        if (!queue) return await interaction.editReply("Aria didn't found any song playing...")
+        const queue = useQueue(interaction.guildId);
 
-        else return await interaction.editReply("Aria is skipping current song..."), queue.skip()
+        if (!queue?.isPlaying()) return await interaction.editReply("Aria didn't found any song playing...")
+
+        else return await interaction.editReply("Aria is skipping current song..."), queue.node.skip()
         
     },
 }   
