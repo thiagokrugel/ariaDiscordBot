@@ -1,5 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { EmbedBuilder } = require("discord.js")
+const { useQueue } = require("discord-player")
 
 module.exports = {
     data: new SlashCommandBuilder()
@@ -8,25 +9,29 @@ module.exports = {
         .addNumberOption((option) => option.setName("page").setDescription("Page number")),
 
     run: async ({client, interaction}) => {
-        const queue = track.queue
+        const queue = useQueue(interaction.guildId);
 
-        const pagesTotal = Math.ceil(queue.tracks.length/10) || 1
+        if (!queue?.isPlaying()) return await interaction.editReply("Aria didn't found any song playing...")
+
+        const tracks = queue.tracks.toArray();
+
+        const pagesTotal = Math.ceil(tracks.length/10) || 1
         const page = (interaction.options.getNumber("page") || 1) - 1
 
         if (page > pagesTotal)
             return await interaction.editReply(`Aria only found ${pagesTotal} pages in the queue!`) 
 
-        const queueString = queue.tracks.slice(page * 10, page * 10 + 10).map((song, i) => {
-            return `\n**${page * 10 + i + 1}. \`[${song.duration}]\` ${song.title} - <@${song.requestedBy.id}>**`
+        const queueString = tracks.slice(page * 10, page * 10 + 10).map((track, i) => {
+            return `\n**${page * 10 + i + 1}. \`[${track.duration}]\` ${track.title} - <@${track.requestedBy}>**`
         })
 
-        const currentSong = queue.current
+        const currentSong = queue.currentTrack
 
         const embeds = new EmbedBuilder()
             .setColor('#c7fabe')
             .setTitle('Current queue!')
             .setDescription(`**Now playing:** \n` + 
-            (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy.id}>` : "None") + 
+            (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy}>` : "None") + 
             `\n\n**Queue:**\n${queueString}`
             )
             .setFooter({
