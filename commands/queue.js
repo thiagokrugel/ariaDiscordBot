@@ -22,7 +22,7 @@ module.exports = {
             return await interaction.editReply(`Aria only found ${pagesTotal} pages in the queue!`) 
 
         const queueString = tracks.slice(page * 10, page * 10 + 10).map((track, i) => {
-            return `\n**${page * 10 + i + 1}. \`[${track.duration}]\` ${track.title} - <@${track.requestedBy}>**`
+            return `\n**${page * 10 + i + 1}. \`[${track.duration}]\` ${track.title} - <@${track.requestedBy.id}>**`
         })
 
         const currentSong = queue.currentTrack
@@ -31,7 +31,7 @@ module.exports = {
             .setColor('#c7fabe')
             .setTitle('Current queue!')
             .setDescription(`**Now playing:** \n` + 
-            (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy}>` : "None") + 
+            (currentSong ? `\`[${currentSong.duration}]\` ${currentSong.title} - <@${currentSong.requestedBy.id}>` : "None") + 
             `\n\n**Queue:**\n${queueString}`
             )
             .setFooter({

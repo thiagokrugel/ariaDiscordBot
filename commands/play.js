@@ -28,7 +28,8 @@ module.exports = {
             if (!url.includes("list")){
                 const { track } = await player.play(interaction.member.voice.channel, url, {
                     nodeOptions: { 
-                        metadata: interaction               
+                        metadata: interaction,
+                        requestedBy: interactionUser.id            
                     }
                 })
 
@@ -42,12 +43,13 @@ module.exports = {
             else {
                 const { track } = await player.play(interaction.member.voice.channel, url, {
                     nodeOptions: { 
-                        metadata: interaction               
+                        metadata: interaction,
+                        requestedBy: interactionUser.id             
                     }
                 })
                 embed
                     .setColor('#c7fabe')
-                    .setDescription(`Aria added ${track.playlist.tracks.length} tracks from **[${track.playlist.title}](${track.playlist.url})** to the queue!\n\n Requested by: <@${interactionUser.id}>`)
+                    .setDescription(`Aria added ${track.playlist.tracks.length} tracks from **[${track.playlist.title}](${track.playlist.url})** to the queue!\n\n Requested by: <@${track.requestedBy.id}>`)
                     .setThumbnail(track.playlist.thumbnail)
                     .setFooter({ text: `Duration: ${track.playlist.durationFormatted} | Aria appreciates your support!`})
             }
