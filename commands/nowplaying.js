@@ -12,7 +12,7 @@ module.exports = {
 
         if (!queue?.isPlaying()) return await interaction.editReply("Aria didn't found any song playing...")
 
-        let progressBar = queue.createProgressBar({
+        let progressBar = queue.node.createProgressBar({
             queue: false,
             length: 19,
         })
