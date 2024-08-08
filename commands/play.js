@@ -43,7 +43,7 @@ module.exports = {
             else {
                 const { track } = await player.play(interaction.member.voice.channel, url, {
                     nodeOptions: { 
-                        metadata: interaction,
+                        metadata: interactionUser.id,
                         requestedBy: interactionUser.id             
                     }
                 })
