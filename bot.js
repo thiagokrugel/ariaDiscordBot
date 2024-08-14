@@ -5,7 +5,8 @@ const { Player } = require("discord-player")
 const { REST } = require('@discordjs/rest')
 const { ActivityType } = require('discord.js')
 const { Routes } = require("discord-api-types/v9")
-const { YoutubeiExtractor } = require("discord-player-youtubei")
+const { SpotifyExtractor } = require('@discord-player/extractor')
+const { YoutubeiExtractor, createYoutubeiStream } = require("discord-player-youtubei")
 
 const fs = require('node:fs');
 const path = require('node:path');
@@ -33,7 +34,11 @@ const player = new Player(client, {
 
 player.extractors.register(YoutubeiExtractor, {})
 
-player.extractors.loadDefault((ext) => ext == 'YouTubeiExtractor');
+player.extractors.register(SpotifyExtractor, {
+    createStream: createYoutubeiStream
+});
+
+player.extractors.loadDefault((ext) => ext == ['YouTubeiExtractor', 'SpotifyExtractor']);
 
 let commands = []
 
